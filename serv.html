@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SoundFy</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Background Image Example</title>
+    </head>
+    
+    <body style="background-image: url('SoundFy/img/estrelas4.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+       
+    </body>
+    
+    </html>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <h1>SoundFy</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="serv.html">Music</a></li>
+                    <li><a href="ctc.html">Contact</a></li>
+                    <li><a href="pesquisar.html">Pesquisar</a></li>
+                </ul>
+            </div>
+            <div class="signup">
+                <a href="login.html">Sign Up</a>
+            </div>
+        </div>
+
+        
+        
+        <div class="body">
+            <div class="heading">
+                <h1>Aproveite as musicas</h1>
+                <br>
+                <p>estamos a trabalhar para adicionar mais artistas alem do falecido lil peep</p>
+            </div>
+            <div class="tours">
+                <div id="music-player">
+                    <img id="album-cover" src="SoundFy/img/starshopping.png"  alt="Capa do Álbum" style="width: 250px; height: 250px; border-radius: 12px;">
+                    <div id="song-info">
+                        <p id="song-title">Starshopping </p>
+                        <p id="artist">Lil Peep</p>
+                        <audio id="audio" controls></audio>
+                    <button id="prevButton" onclick="prevSong()">Anterior</button>
+                    <button id="playPauseButton" onclick="togglePlayPause()">Play</button>
+                    <button id="nextButton" onclick="proximo()">Próxima</button>
+                    
+                    </div>
+                    
+                </div> 
+                   
+                
+        </div>
+
+     
+    </body>
+   
+    <style>
+    
+        p{
+            color: #ffffff;
+        }
+       
+
+
+        #music-player {
+            width: 300px;
+            text-align: center;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+          img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+      
+
+        #song-info {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #dark-bg {
+            background-color: #ffffff;
+        }
+    </style>
+
+    </style>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var audio = document.getElementById('audio');
+        var albumCover = document.getElementById('album-cover');
+        var songTitle = document.getElementById('song-title');
+        var artist = document.getElementById('artist');
+        var playPauseButton = document.getElementById('playPauseButton');
+        var prevButton = document.getElementById('prevButton');
+        var nextButton = document.getElementById('nextButton');
+
+        var playlist = [
+            { title: 'Starshopping', artist: 'Lil Peep', cover: 'SoundFy/img/starshopping.jpg', src: 'SoundFy/img/starshopping.mp3' },
+            { title: 'Brightside', artist: 'Lil Peep', cover: 'SoundFy/img/brightside.jpg', src: 'SoundFy/img/brightside.mp3' }
+        ]; 
+
+        var currentSongIndex = 0;
+
+function loadSong(index) {
+    var song = playlist[index];
+    audio.src = song.src;
+    albumCover.src = song.cover;
+    songTitle.innerText = song.title;
+    artist.innerText = song.artist;
+}
+
+function togglePlayPause() {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.innerText = 'Pause';
+    } else {
+        audio.pause();
+        playPauseButton.innerText = 'Play';
+    }
+}
+
+function prevSong() {
+    currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+    loadSong(currentSongIndex);
+    audio.play();
+}
+
+function nextSong() {
+    currentSongIndex = (currentSongIndex + 1) % playlist.length;
+    loadSong(currentSongIndex);
+    audio.play();
+}
+
+loadSong(currentSongIndex);
+
+audio.addEventListener('ended', function () {
+    nextSong();
+});
+});
+</script>
